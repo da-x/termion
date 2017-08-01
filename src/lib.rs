@@ -25,6 +25,8 @@ pub use sys::tty::{is_tty, get_tty};
 mod async;
 pub use async::{AsyncReader, async_stdin};
 
+mod error;
+
 #[macro_use]
 mod macros;
 pub mod clear;
