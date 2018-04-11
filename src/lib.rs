@@ -21,7 +21,7 @@ mod sys;
 
 pub use sys::size::terminal_size;
 pub use sys::tty::{is_tty, get_tty};
-pub use sys::tty::set_nonblocking;
+pub use sys::tty::{set_nonblocking, tty_read};
 
 mod async;
 pub use async::{AsyncReader, async_stdin};
