@@ -15,3 +15,9 @@ pub fn is_tty<T: AsRawFd>(stream: &T) -> bool {
 pub fn get_tty() -> io::Result<fs::File> {
     fs::OpenOptions::new().read(true).write(true).open("/dev/tty")
 }
+
+/// Change the non-blocking state of a stream
+pub fn set_nonblocking<T: AsRawFd>(stream: &T, nonblocking: bool) -> io::Result<()> {
+    let mut nonblocking = nonblocking as libc::c_ulong;
+    unsafe { super::cvt(libc::ioctl(stream.as_raw_fd(), libc::FIONBIO, &mut nonblocking)).map(|_| ()) }
+}
